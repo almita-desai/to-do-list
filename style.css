@@ -1,0 +1,128 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+body{
+    min-height: 100vh;
+    background: linear-gradient(to bottom, #a8edea, #fed6e3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+
+
+}
+h1{
+    font-size: 40px;
+    font-weight: 300;
+}
+.container{
+    background-color: white;
+    width: 100%;
+    max-width: 550px;
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+.input-wrapper{
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+.input-text{
+    width: 75%;
+    padding: 10px;
+    border: none;
+    border-bottom: 2px solid black;
+    background: none;
+    outline: none;
+    font-size: 18px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.input-text:focus{
+    border-bottom: 2px solid rgb(120, 118, 118)
+}
+.input-btn {
+    background-color: #b9b9b9;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+    width: auto;
+    justify-content: center;
+    display: inline-block;
+    vertical-align:middle ;
+    text-align: center;
+    font-weight: 500;
+}
+.input-btn:hover{
+    background-color: rgb(132, 134, 134);
+}
+.pending-tasks{
+    font-size: 16px;
+    font-weight: 300;
+    color: #4f4d4d;
+    margin: 10px  10px;
+    text-align: left;
+
+}
+.tasks-list{
+    list-style: none;
+    padding: 0;
+}
+.tasks-list li{
+    margin-bottom: 10px;
+    border-radius: 5px;
+    padding: 8px;
+    background-color: #f4f3f3;
+    display:flex;
+    align-items:center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    font-size: 16px;
+    word-break: break-word;
+}
+.task-text {
+    flex-grow: 1;
+    text-align: left;
+    align-items: center;
+    margin-right: 8px;
+    display: block;
+    width: 100%; 
+}
+.task-btns{
+    display: flex;
+    margin-left: auto;
+    gap: 5px;
+
+}
+.edit-task,.remove-task{
+    margin: 5px;
+    cursor: pointer;
+    border: none;
+    font-size: 20px;
+    padding: 2px 8px 2px;
+    background-color: #f4f3f3;
+}
+.edit-task:hover{
+    color: #7f7d7d;
+
+}
+.remove-task:hover{
+    color: rgb(255, 87, 87);
+}
+/* for responsiveness */
+@media (max-width: 600px) {
+    .container {
+        width: 90%;
+    }
+
+    .tasks-list li {
+        flex-direction: column;
+    }
+}
