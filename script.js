@@ -2,6 +2,7 @@
 const input_text=document.getElementById('input-text')
 const submit_btn=document.getElementById('submit-btn')
 const tasks_list=document.querySelector('ul')
+const clear_all_btn=document.getElementById('clear-all')
 //add new task
 function add_task(){
     const task_text=create_task('task-text')//create task text
@@ -15,6 +16,19 @@ function add_task(){
     //create edit and remove button
     const edit_task=create_button('edit-task','fa-solid fa-pen-to-square')
     const remove_task=create_button('remove-task','fa-solid fa-xmark')
+    
+    //edit task
+    edit_task.addEventListener('click',function (){
+        edit_task_function(li)
+    })
+
+    //remove task
+    remove_task.addEventListener('click',function(){
+        show_toast("Deleted.Your to-do list just got lighter.","\uD83C\uDFC6")
+        li.remove()
+    })
+    
+
 
     //add buttons to the div 
     task_btns.appendChild(edit_task)
@@ -24,6 +38,7 @@ function add_task(){
     li.append(task_btns)
     tasks_list.appendChild(li)//append list to task_list(ul)
 
+
     input_text.value=''//clear input text bar
 
 
@@ -32,8 +47,8 @@ function add_task(){
 function create_task(classname){
     const taskvalue=input_text.value.trim()
     if(taskvalue===''){
-        console.log('enter task')
-        return null
+        show_toast("Your list won’t fill itself. Let’s add a task!","\u26A0\uFE0F");
+        return null;
     }
     const task_text=document.createElement('div')
     task_text.className=classname
@@ -62,3 +77,66 @@ input_text.addEventListener('keypress', function (event) {
         add_task()
     }
 })//when enter is pressed
+
+//edit task function
+function edit_task_function(li){
+    const task_text=li.querySelector('.task-text')
+    const input=document.createElement('input')
+    input.type='text'
+    input.className='edit-input'
+    input.value = task_text.textContent;
+
+    task_text.replaceWith(input)
+    input.focus();
+    //saves the changes made
+    function save_task(){
+        const new_value=input.value.trim()
+        if (new_value === '') {
+            show_toast("Empty edits are a no-go!", "\u26A0\uFE0F");
+            input.focus();
+            return;
+        }
+        //change classname back to task-text
+        const updated_task = document.createElement('div');
+        updated_task.className = 'task-text';
+        updated_task.textContent = new_value;
+        input.replaceWith(updated_task);
+        show_toast("Task updated successfully!", "\u2705");
+        li.querySelector('.edit-task').addEventListener('click', function () {
+            edit_task_function(li);
+        });
+
+        
+    }
+    input.addEventListener('blur', save_task);
+    input.addEventListener('keypress', function (event) {
+        event.stopPropagation(); // Prevent Enter from triggering add_task()
+        if (event.key === 'Enter') save_task();
+    });
+}
+
+//clears all tasks
+function clear_all(){
+    if(tasks_list.children.length==0){
+    show_toast("You can’t delete what doesn’t exist. ","\uD83D\uDE09");
+    }
+    else{
+        tasks_list.innerHTML=''
+        show_toast("Done and dusted!Your list is all clear.","\u2728")
+    }
+    
+}
+
+//toast msg
+function show_toast(message,emoji){
+    const toast=document.getElementById('custom-toast')
+    const toast_message=document.getElementById('toast-message')
+    toast_message.innerHTML=`<span style="font-size:20px;">${emoji}</span> ${message}`
+    toast.classList.add('show')//adds show to the classname (.toast.show)
+    toast.classList.remove('hide')//removes the hide from classname (.toast.hide)
+    setTimeout(() => {
+        toast.classList.remove('show');
+        toast.classList.add('hide');
+    }, 3000);
+}
+clear_all_btn.addEventListener('click',clear_all)
