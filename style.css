@@ -67,7 +67,7 @@ h1{
 .pending-tasks{
     font-size: 16px;
     font-weight: 300;
-    color: #4f4d4d;
+    color: #373636;
     margin: 10px  10px;
     text-align: left;
 
@@ -161,6 +161,7 @@ h1{
     opacity: 1;
     transform: translateY(0);
 }
+
 
 .toast.hide {
     opacity: 0;

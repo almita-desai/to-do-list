@@ -3,6 +3,7 @@ const input_text=document.getElementById('input-text')
 const submit_btn=document.getElementById('submit-btn')
 const tasks_list=document.querySelector('ul')
 const clear_all_btn=document.getElementById('clear-all')
+const task_counter=document.getElementById('task-counter')
 //add new task
 function add_task(){
     const task_text=create_task('task-text')//create task text
@@ -26,6 +27,7 @@ function add_task(){
     remove_task.addEventListener('click',function(){
         show_toast("Deleted.Your to-do list just got lighter.","\uD83C\uDFC6")
         li.remove()
+        update_task_counter()
     })
     
 
@@ -40,6 +42,7 @@ function add_task(){
 
 
     input_text.value=''//clear input text bar
+    update_task_counter()
 
 
 }
@@ -123,8 +126,14 @@ function clear_all(){
     else{
         tasks_list.innerHTML=''
         show_toast("Done and dusted!Your list is all clear.","\u2728")
+        update_task_counter()
     }
     
+}
+
+function update_task_counter(){
+    const task_count=tasks_list.children.length
+    task_counter.innerText=task_count
 }
 
 //toast msg
@@ -140,3 +149,4 @@ function show_toast(message,emoji){
     }, 3000);
 }
 clear_all_btn.addEventListener('click',clear_all)
+update_task_counter()
