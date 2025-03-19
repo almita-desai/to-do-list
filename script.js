@@ -28,6 +28,7 @@ function add_task(){
         show_toast("Deleted.Your to-do list just got lighter.","\uD83C\uDFC6")
         li.remove()
         update_task_counter()
+        save_task_to_storage()
     })
     
 
@@ -43,6 +44,7 @@ function add_task(){
 
     input_text.value=''//clear input text bar
     update_task_counter()
+    save_task_to_storage() 
 
 
 }
@@ -105,6 +107,7 @@ function edit_task_function(li){
         updated_task.textContent = new_value;
         input.replaceWith(updated_task);
         show_toast("Task updated successfully!", "\u2705");
+        save_task_to_storage()
         li.querySelector('.edit-task').addEventListener('click', function () {
             edit_task_function(li);
         });
@@ -125,6 +128,7 @@ function clear_all(){
     }
     else{
         tasks_list.innerHTML=''
+        localStorage.removeItem("tasks") //remove tasks array from storage
         show_toast("Done and dusted!Your list is all clear.","\u2728")
         update_task_counter()
     }
@@ -136,6 +140,23 @@ function update_task_counter(){
     task_counter.innerText=task_count
 }
 
+function save_task_to_storage(){
+    const tasks=[] //create an array to store task
+    document.querySelectorAll('.task-text').forEach(task=>{
+        tasks.push(task.textContent)
+    })
+    localStorage.setItem("tasks",JSON.stringify(tasks))
+}
+function load_task_from_storage(){
+    const tasks=JSON.parse(localStorage.getItem("tasks")) || []  //get the task list or empty array if there is no task
+    tasks.forEach(task_text=>{
+        input_text.value=task_text 
+        add_task()
+    })
+
+
+}
+window.addEventListener('load',load_task_from_storage)
 //toast msg
 function show_toast(message,emoji){
     const toast=document.getElementById('custom-toast')
