@@ -1,11 +1,16 @@
-// Get the input field, submit button, and task list
+
 const input_text=document.getElementById('input-text')
 const submit_btn=document.getElementById('submit-btn')
 const tasks_list=document.querySelector('ul')
 const clear_all_btn=document.getElementById('clear-all')
 const task_counter=document.getElementById('task-counter')
-//add new task
+
 function add_task(){
+    numberOfTasks=update_task_counter()
+    if(numberOfTasks>=15){
+        show_toast("Remove some tasks before adding new ones.", "\u26A0\uFE0F");
+        return 
+    }
     const task_text=create_task('task-text')//create task text
     if (!task_text) return;//if task_text is null exit funtion
     const li=document.createElement('li')//new list item to hold task
@@ -14,7 +19,7 @@ function add_task(){
     const task_btns=document.createElement('div')//div to hold edit and remove button
     task_btns.className='task-btns'
 
-    //create edit and remove button
+    
     const edit_task=create_button('edit-task','fa-solid fa-pen-to-square')
     const remove_task=create_button('remove-task','fa-solid fa-xmark')
     
@@ -27,13 +32,13 @@ function add_task(){
     remove_task.addEventListener('click',function(){
         show_toast("Deleted.Your to-do list just got lighter.","\uD83C\uDFC6")
         li.remove()
-        update_task_counter()
+        numberOfTasks=update_task_counter()
         save_task_to_storage()
     })
     
 
 
-    //add buttons to the div 
+    
     task_btns.appendChild(edit_task)
     task_btns.appendChild(remove_task)
 
@@ -43,7 +48,7 @@ function add_task(){
 
 
     input_text.value=''//clear input text bar
-    update_task_counter()
+    numberOfTasks=update_task_counter()
     save_task_to_storage() 
 
 
@@ -61,7 +66,7 @@ function create_task(classname){
 
     return task_text
 }
-//creates a button
+
 function create_button(button_classname,icon_classname){
     const button=document.createElement('button')
     button.className=button_classname
@@ -70,7 +75,7 @@ function create_button(button_classname,icon_classname){
     return button
 
 }
-//creates a icon
+
 function create_icon(icon_classname){
     const icon=document.createElement('i')
     icon.className=icon_classname
@@ -83,7 +88,7 @@ input_text.addEventListener('keypress', function (event) {
     }
 })//when enter is pressed
 
-//edit task function
+
 function edit_task_function(li){
     const task_text=li.querySelector('.task-text')
     const input=document.createElement('input')
@@ -121,7 +126,7 @@ function edit_task_function(li){
     });
 }
 
-//clears all tasks
+
 function clear_all(){
     if(tasks_list.children.length==0){
     show_toast("You can’t delete what doesn’t exist. ","\uD83D\uDE09");
@@ -131,6 +136,7 @@ function clear_all(){
         localStorage.removeItem("tasks") //remove tasks array from storage
         show_toast("Done and dusted!Your list is all clear.","\u2728")
         update_task_counter()
+       
     }
     
 }
@@ -138,6 +144,7 @@ function clear_all(){
 function update_task_counter(){
     const task_count=tasks_list.children.length
     task_counter.innerText=task_count
+    return task_count
 }
 
 function save_task_to_storage(){
@@ -168,6 +175,6 @@ function show_toast(message,emoji){
         toast.classList.remove('show');
         toast.classList.add('hide');
     }, 3000);
-}
+}   
 clear_all_btn.addEventListener('click',clear_all)
 update_task_counter()
