@@ -33,7 +33,7 @@ h1{
     text-align: center;
 }
 .input-text{
-    width: 75%;
+    width: 70%;
     padding: 10px;
     border: none;
     border-bottom: 2px solid black;
@@ -45,6 +45,19 @@ h1{
 }
 .input-text:focus{
     border-bottom: 2px solid rgb(120, 118, 118)
+}
+#voice-icon{
+    font-size: 24px;
+    cursor: pointer;
+    vertical-align:middle ;
+    margin-top: 12px;
+    margin-right: 4px;
+    color: #454545;
+    
+}
+#voice-icon:hover{
+    color: #2e2e2e;
+    transform: scale(1.05);
 }
 .submit-btn ,.clear-all{
     background-color: #cecccc;
@@ -63,6 +76,7 @@ h1{
 }
 .submit-btn:hover,.clear-all:hover{
     background-color: rgb(163, 165, 165);
+    transform: scale(1.03);
 }
 .pending-tasks{
     font-size: 16px;
