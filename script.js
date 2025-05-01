@@ -21,7 +21,7 @@ function add_task(){
 
     
     const edit_task=create_button('edit-task','fa-solid fa-pen-to-square')
-    const remove_task=create_button('remove-task','fa-solid fa-xmark')
+    const remove_task=create_button('remove-task','fa-solid fa-check')
     
     //edit task
     edit_task.addEventListener('click',function (){
