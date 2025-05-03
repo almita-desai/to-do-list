@@ -9,10 +9,10 @@ body{
     background: linear-gradient(to bottom, #a8edea, #fed6e3);
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center; 
     padding: 20px;
-
-
+  
+    
 }
 h1{
     font-size: 40px;
@@ -82,7 +82,7 @@ h1{
     font-size: 16px;
     font-weight: 300;
     color: #373636;
-    margin: 10px  10px;
+    margin: 20px 0px 30px 10px;
     text-align: left;
 
 }

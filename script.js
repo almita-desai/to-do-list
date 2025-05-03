@@ -1,9 +1,9 @@
-
 const input_text=document.getElementById('input-text')
 const submit_btn=document.getElementById('submit-btn')
 const tasks_list=document.querySelector('ul')
 const clear_all_btn=document.getElementById('clear-all')
 const task_counter=document.getElementById('task-counter')
+const speech_btn=document.getElementById('voice-icon')
 
 function add_task(){
     numberOfTasks=update_task_counter()
@@ -50,7 +50,6 @@ function add_task(){
     input_text.value=''//clear input text bar
     numberOfTasks=update_task_counter()
     save_task_to_storage() 
-
 
 }
 //creates task div
@@ -175,6 +174,29 @@ function show_toast(message,emoji){
         toast.classList.remove('show');
         toast.classList.add('hide');
     }, 3000);
-}   
+}
+
+speech_btn.addEventListener('click',()=>{
+    if(!('SpeechRecognition' in window || 'webkitSpeechRecognition' in window)){
+        show_toast('Speech Recognition is NOT supported in this browser.,\uD83D\uDE1E')
+
+    }
+    const recognition=new (window.SpeechRecognition || window.webkitSpeechRecognition)()
+    recognition.lang='en-US'
+    recognition.continuous=false
+    recognition.interimResults=false
+    recognition.start()
+    recognition.onresult=function (e){
+        const spokenText = e.results[0][0].transcript;
+        input_text.value=spokenText
+        setTimeout(() => {
+            add_task();  
+        }, 250);
+
+    }
+    recognition.onerror=function(e){
+        show_toast('Oops, speech recognition error.', '\uD83D\uDE16')
+    }
+})
 clear_all_btn.addEventListener('click',clear_all)
 update_task_counter()
