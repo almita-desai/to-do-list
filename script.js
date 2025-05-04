@@ -186,6 +186,7 @@ speech_btn.addEventListener('click',()=>{
     recognition.continuous=false
     recognition.interimResults=false
     recognition.start()
+    speech_btn.style.color='rgb(85, 179, 76)'
     recognition.onresult=function (e){
         const spokenText = e.results[0][0].transcript;
         input_text.value=spokenText
@@ -197,6 +198,10 @@ speech_btn.addEventListener('click',()=>{
     recognition.onerror=function(e){
         show_toast('Oops, speech recognition error.', '\uD83D\uDE16')
     }
+    recognition.onend=function(){
+         speech_btn.style.color=' #2e2e2e'
+    }
+    
 })
 clear_all_btn.addEventListener('click',clear_all)
 update_task_counter()
