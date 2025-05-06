@@ -6,7 +6,7 @@
 }
 body{
     min-height: 100vh;
-    background: linear-gradient(to bottom, #a8edea, #fed6e3);
+    background: linear-gradient(to bottom, #a8edea, #f9b0c7);
     display: flex;
     align-items: center;
     justify-content: center; 
@@ -78,11 +78,35 @@ h1{
     background-color: rgb(163, 165, 165);
     transform: scale(1.03);
 }
+label{
+    font-size: 16px;
+    font-weight: 300;
+    color: #232323;
+    padding: 10px;
+    display: inline;
+    margin-top: 10px;
+}
+#priority{
+    font-size: 16px;
+    font-weight: 300;
+    color: #232323;
+    margin-top:10px;
+    margin-right:30%;
+   
+}
+#priority-circle{
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: green;
+    border-radius: 50%;
+
+}
 .pending-tasks{
     font-size: 16px;
     font-weight: 300;
     color: #373636;
-    margin: 20px 0px 30px 10px;
+    margin: 10px 0px 30px 10px;
     text-align: left;
 
 }
@@ -93,7 +117,7 @@ h1{
 .tasks-list li{
     margin-bottom: 12px;
     border-radius: 5px;
-    padding: 4px;
+    padding-right: 4px;
     background-color: #f4f3f3;
     display:flex;
     align-items:center;
@@ -111,6 +135,13 @@ h1{
     margin-left: 12px;
     display: block;
     width: 100%; 
+}
+.task_priority{
+    width: 8px;
+    background-color: green;
+    border-radius: 5px 0px 0px 5px;
+    align-self: stretch;
+    
 }
 .task-btns{
     display: flex;
@@ -133,7 +164,7 @@ h1{
 .remove-task:hover{
     color: rgb(44, 117, 42);
 }
-/* for input field in edit option */
+
 .edit-input {
     width: 100%;
     font-size: 16px;
@@ -148,7 +179,6 @@ h1{
     border-color: #0056b3;
     box-shadow: 0 0 5px rgba(0, 91, 187, 0.5);
 }
-/* toast */
 .toast {
     position: fixed;
     bottom: 20px;
