@@ -4,6 +4,18 @@ const tasks_list=document.querySelector('ul')
 const clear_all_btn=document.getElementById('clear-all')
 const task_counter=document.getElementById('task-counter')
 const speech_btn=document.getElementById('voice-icon')
+const prioritySelected=document.getElementById('priority')
+const priorityColor=document.getElementById('priority-circle')
+
+const priorityColorValues={
+    low:'green',
+    medium:'orange',
+    high:'red'
+}
+prioritySelected.addEventListener('change',()=>{
+    const choosenPriority=prioritySelected.value
+    priorityColor.style.backgroundColor=priorityColorValues[choosenPriority]
+})
 
 function add_task(){
     numberOfTasks=update_task_counter()
@@ -14,8 +26,10 @@ function add_task(){
     const task_text=create_task('task-text')//create task text
     if (!task_text) return;//if task_text is null exit funtion
     const li=document.createElement('li')//new list item to hold task
+    const task_priority=document.createElement('span')
+    task_priority.className='task_priority'
+    li.append(task_priority)
     li.appendChild(task_text)
-    
     const task_btns=document.createElement('div')//div to hold edit and remove button
     task_btns.className='task-btns'
 
