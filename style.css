@@ -140,8 +140,7 @@ label{
     width: 8px;
     background-color: green;
     border-radius: 5px 0px 0px 5px;
-    align-self: stretch;
-    
+    align-self: stretch;   
 }
 .task-btns{
     display: flex;

@@ -17,6 +17,8 @@ prioritySelected.addEventListener('change',()=>{
     priorityColor.style.backgroundColor=priorityColorValues[choosenPriority]
 })
 
+
+
 function add_task(){
     numberOfTasks=update_task_counter()
     if(numberOfTasks>=15){
@@ -28,12 +30,12 @@ function add_task(){
     const li=document.createElement('li')//new list item to hold task
     const task_priority=document.createElement('span')
     task_priority.className='task_priority'
+    const priority_value=prioritySelected.value
+    task_priority.style.backgroundColor=priorityColorValues[priority_value]
     li.append(task_priority)
     li.appendChild(task_text)
     const task_btns=document.createElement('div')//div to hold edit and remove button
-    task_btns.className='task-btns'
-
-    
+    task_btns.className='task-btns'   
     const edit_task=create_button('edit-task','fa-solid fa-pen-to-square')
     const remove_task=create_button('remove-task','fa-solid fa-check')
     
@@ -162,15 +164,23 @@ function update_task_counter(){
 
 function save_task_to_storage(){
     const tasks=[] //create an array to store task
-    document.querySelectorAll('.task-text').forEach(task=>{
-        tasks.push(task.textContent)
-    })
+    document.querySelectorAll('li').forEach(li => {
+        const taskText = li.querySelector('.task-text')?.textContent;
+        const priorityColor = li.querySelector('.task_priority')?.style.backgroundColor;
+        let priority = Object.keys(priorityColorValues).find(key => priorityColorValues[key] === priorityColor);
+
+        if (taskText && priority) {
+            tasks.push({ text: taskText, priority });
+        }
+    });
     localStorage.setItem("tasks",JSON.stringify(tasks))
 }
 function load_task_from_storage(){
     const tasks=JSON.parse(localStorage.getItem("tasks")) || []  //get the task list or empty array if there is no task
-    tasks.forEach(task_text=>{
-        input_text.value=task_text 
+    tasks.forEach(task=>{
+        input_text.value=task.text 
+        prioritySelected.value = task.priority;
+        priorityColor.style.backgroundColor = priorityColorValues[task.priority];
         add_task()
     })
 
