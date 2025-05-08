@@ -214,9 +214,6 @@ speech_btn.addEventListener('click',()=>{
     recognition.onresult=function (e){
         const spokenText = e.results[0][0].transcript;
         input_text.value=spokenText
-        setTimeout(() => {
-            add_task();  
-        }, 250);
 
     }
     recognition.onerror=function(e){
