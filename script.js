@@ -14,7 +14,15 @@ const priorityColorValues={
 }
 prioritySelected.addEventListener('change',()=>{
     const choosenPriority=prioritySelected.value
-    priorityColor.style.backgroundColor=priorityColorValues[choosenPriority]
+
+    if(choosenPriority=='default'){
+        priorityColor.style.backgroundColor='White'
+
+    }
+    else{
+        priorityColor.style.backgroundColor=priorityColorValues[choosenPriority]
+
+    }
 })
 
 

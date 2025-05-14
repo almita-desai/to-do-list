@@ -98,7 +98,6 @@ label{
     display: inline-block;
     width: 10px;
     height: 10px;
-    background-color: green;
     border-radius: 50%;
 
 }
@@ -138,7 +137,6 @@ label{
 }
 .task_priority{
     width: 8px;
-    background-color: green;
     border-radius: 5px 0px 0px 5px;
     align-self: stretch;   
 }
