@@ -226,6 +226,7 @@ speech_btn.addEventListener('click',()=>{
     }
     recognition.onerror=function(e){
         show_toast('Oops, speech recognition error.', '\uD83D\uDE16')
+        speech_btn.style.color=' #2e2e2e'
     }
     recognition.onend=function(){
          speech_btn.style.color=' #2e2e2e'
