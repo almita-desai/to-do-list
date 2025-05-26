@@ -22,6 +22,8 @@ h1{
     background-color: white;
     width: 100%;
     max-width: 500px;
+    margin: 0 auto;
+    box-sizing: border-box;
     text-align: center;
     padding: 20px;
     border-radius: 10px;
@@ -210,11 +212,80 @@ label{
 }
 
 @media (max-width: 600px) {
+
     .container {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .input-text {
         width: 90%;
+        font-size: 16px;
     }
 
     .tasks-list li {
-        flex-direction: column;
+        flex-direction: row;
+        padding: 8px;
+    }
+
+    .task_priority {
+        width: 6px;
+        height: 100%;
+        min-height: 40px;
+        border-radius: 5px 0 0 5px;
+    }
+
+    .task-text {
+        margin: 0 8px;
+        font-size: 16px;
+        flex-grow: 1;
+        width: auto;
+    }
+
+    .task-btns {
+        justify-content: flex-end;
+        width: auto;
+    }
+
+    label[for="priority"],
+    #priority-circle,
+    #priority {
+        display: inline-block;
+        vertical-align: middle;
+        margin-top: 0;
+    }
+
+    label[for="priority"] {
+        margin-right: 8px;
+    }
+
+    #priority-circle {
+        width: 12px;
+        height: 12px;
+        margin-right: 8px;
+        background-color: white;
+        border-radius: 50%;
+    }
+
+    #priority {
+        margin-right: 0;
+        font-size: 16px;
+        font-weight: 300;
+        color: #232323;
+
+    }
+
+    .submit-btn,
+    .clear-all {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .toast {
+        bottom: 10px;
+        right: 10px;
+        font-size: 14px;
+        padding: 10px 15px;
+        min-width: 180px;
     }
 }
