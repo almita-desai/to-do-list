@@ -16,3 +16,5 @@ Add tasks with priorities, edit them, mark them done, and save your list. It als
 - HTML  
 - CSS  
 - JavaScript
+
+[Check it out](https://almita-desai.github.io/to-do-list/)
